@@ -10,7 +10,8 @@ const charactersURL = 'https://rickandmortyapi.com/api/character/'
 class App extends Component {
 
   state = {
-    characters: []
+    characters: [],
+    favoriteCharacter: {}
   }
 
   componentDidMount(){
@@ -19,13 +20,23 @@ class App extends Component {
       .then(({results}) => this.setState({characters: results}))
   }
 
+  getCharacter = (character) => {
+    console.log('hello', character);
+    this.setState({ favoriteCharacter: character });
+  }
+
+
   render () {
-    const { characters } = this.state
+    const { characters, favoriteCharacter } = this.state
 
   return (
     <div className="App">
      <h1>Rick and Morty!</h1>
-     <Characters characters={characters}/>
+     <Favorite character={ favoriteCharacter }/>
+     <Characters 
+      characters={characters} 
+      getCharacter={this.getCharacter}
+     />
     </div>
     );
   }

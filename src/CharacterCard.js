@@ -1,9 +1,9 @@
 import React from 'react';
 
-function CharacterCard({ character }){
+function CharacterCard({ character, getCharacter }){
 
   const handleClick = () => {
-    console.log('card-clicked!');
+    getCharacter(character);
   }
 
   return(
